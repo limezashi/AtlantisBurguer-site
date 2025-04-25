@@ -14,6 +14,14 @@ body {
   text-align: center;
 }
 
+.menu {
+  background: transparent;
+  position: relative;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 2;
+}
+
 .banner {
   height: 300px;
   position: relative;
@@ -84,6 +92,27 @@ body {
 .menu ul li a:hover,
 .menu ul li a.active {
   color: #ffc300;
+}
+
+nav.menu ul li a {
+  position: relative;
+  padding-bottom: 5px;
+}
+
+nav.menu ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #ffc300;
+  transition: width 0.3s ease;
+}
+
+nav.menu ul li a:hover::after,
+nav.menu ul li a.active::after {
+  width: 100%;
 }
 
 .carrossel {
