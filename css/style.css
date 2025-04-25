@@ -3,7 +3,7 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background-color: #081b2c;
+  background-color: #093047;
   color: #fff;
 }
 
@@ -16,11 +16,7 @@ body {
 
 .banner {
   height: 300px;
-  background-image: url('../assets/img/home/lanche head.jpg');
-  background-size: cover;
-  background-position: center;
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,11 +24,13 @@ body {
   text-align: center;
 }
 
-.banner::after {
-  content: "";
+.banner-bg {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background-image: url('../assets/img/home/lanche head.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; /* Opacidade do fundo */
   z-index: -1;
 }
 
@@ -40,30 +38,42 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 1; /* Garantir que o texto fique acima do fundo */
 }
 
 .logo-central {
   font-size: 2.8rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 3px;
   margin-bottom: 0.5rem;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-central > span:first-child {
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 20px;
 }
 
 .logo-central span {
-  color: #ffc300;
+  font-size: 1.5rem;
+  color: white;
 }
 
-nav.menu ul {
+
+
+.menu ul {
   display: flex;
   justify-content: center;
   gap: 2rem;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin-bottom: 50px;
 }
 
-nav.menu ul li a {
+.menu ul li a {
   color: #fff;
   text-decoration: none;
   font-size: 1rem;
@@ -71,41 +81,78 @@ nav.menu ul li a {
   transition: color 0.3s ease;
 }
 
-nav.menu ul li a:hover,
-nav.menu ul li a.active {
+.menu ul li a:hover,
+.menu ul li a.active {
   color: #ffc300;
 }
 
 .carrossel {
-  background: url('../assets/img/home/fundo-ornamento.jpg') center center no-repeat;
+  background: url('../assets/img/home/SiteAtlantis.jpg') center center no-repeat;
   background-size: cover;
   padding: 2.5rem 0;
   text-align: center;
   position: relative;
+  background-position: center bottom;
+  min-height: 400px;
+}
+
+.pedido {
+  padding: 3rem 0;
+  text-align: center;
+  display: flex; /* Torna a section um container flex */
+  justify-content: center; /* Alinha o conteúdo (botão) horizontalmente no centro */
+  align-items: center; /* Alinha o conteúdo (botão) verticalmente no centro */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0930477a; 
+  z-index: 1;
+}
+
+.carrossel .container {
+  margin: 0 auto;
+  display: flex;
+  gap: 15px;
+  position: relative;
+  z-index: 2; 
+} 
+
+.menu, .btn-central, .seta-carrossel {
+  position: relative;
+  z-index: 3; 
 }
 
 .carrossel-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow-x: hidden;
+  scroll-behavior: auto;
   gap: 1rem;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
+  overflow-y: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .carrossel-wrapper img {
+  flex: 0 0 auto;
   width: 180px;
-  height: auto;
-  border-radius: 8px;
+  height: 180px;
+  border-radius: 12px;
+  scroll-snap-align: center;
   transition: transform 0.3s, opacity 0.3s;
-  opacity: 0.5;
 }
 
 .carrossel-wrapper img.img-central {
-  transform: scale(1.1);
+  transform: scale(1.2);
   opacity: 1;
 }
+
 
 .seta-carrossel {
   position: absolute;
@@ -121,11 +168,11 @@ nav.menu ul li a.active {
 }
 
 .seta-carrossel.esquerda {
-  left: 10px;
+  left: -100px;
 }
 
 .seta-carrossel.direita {
-  right: 10px;
+  right: -100px;
 }
 
 .tridente {
@@ -139,7 +186,7 @@ nav.menu ul li a.active {
 }
 
 .btn-central {
-  margin-top: 1rem;
+  margin-top: 4rem;
 }
 
 .btn-acao {
@@ -165,16 +212,18 @@ nav.menu ul li a.active {
   padding: 3rem 1rem;
   text-align: center;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 }
+
+
 
 .rodape .info {
   display: flex;
   justify-content: space-between;
+  align-self: flex-start;
   gap: 4rem;
   flex-wrap: wrap;
-  width: 100%;
   max-width: 900px;
   margin-bottom: 1.5rem;
   text-align: left;
@@ -204,6 +253,7 @@ iframe {
   display: flex;
   justify-content: center;
   gap: 20px;
+  align-self: flex-end;
 }
 
 .redes-sociais img {

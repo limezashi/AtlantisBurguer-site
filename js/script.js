@@ -6,10 +6,18 @@ const carrosselWrapper = document.getElementById('carrosselWrapper');
 function atualizarSlides() {
   imagens.forEach((img, index) => {
     img.classList.remove('img-central');
-    if (index === currentSlide) {
-      img.classList.add('img-central');
-    }
   });
+
+  const img = imagens[currentSlide];
+  img.classList.add('img-central');
+
+  // Cálculo manual para centralizar
+  const imgOffset = img.offsetLeft;
+  const imgWidth = img.offsetWidth;
+  const wrapperWidth = carrosselWrapper.offsetWidth;
+  const scrollLeft = imgOffset - (wrapperWidth / 2) + (imgWidth / 2);
+
+  carrosselWrapper.scrollLeft = scrollLeft; // 🔥 scroll imediato, sem animação
 }
 
 function moverSlide(direcao) {
@@ -17,19 +25,18 @@ function moverSlide(direcao) {
   atualizarSlides();
 }
 
-function iniciarAutoplay() {
-  intervaloCarrossel = setInterval(() => moverSlide(1), 3000);
-}
+// function iniciarAutoplay() {
+//   intervaloCarrossel = setInterval(() => moverSlide(1), 4000);
+// }
 
-function pararAutoplay() {
-  clearInterval(intervaloCarrossel);
-}
+// function pararAutoplay() {
+//   clearInterval(intervaloCarrossel);
+// }
 
 document.addEventListener('DOMContentLoaded', () => {
   atualizarSlides();
   iniciarAutoplay();
 
-  // pausa ao passar o mouse
   carrosselWrapper.addEventListener('mouseenter', pararAutoplay);
   carrosselWrapper.addEventListener('mouseleave', iniciarAutoplay);
 });
